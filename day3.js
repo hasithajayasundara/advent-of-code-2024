@@ -15,6 +15,32 @@ try {
   console.log(sum);
 
   // Part 2
+  const newRegex = /do\(\)|don't\(\)|mul\(\d+,\s*\d+\)/g;
+  const newMatches = data.match(newRegex);
+  let count = 0;
+  const matchesLen = newMatches.length;
+  let newSum = 0;
+
+  while (count < matchesLen) {
+    if (newMatches[count] === "don't()") {
+      while (newMatches[count] !== "do()" && count < matchesLen) {
+        count++;
+      }
+    }
+
+    if (newMatches[count] === "do()") {
+      count++;
+    }
+
+    if (count < matchesLen) {
+      console.log(newMatches[count]);
+      const nums = newMatches[count].match(/\d+/g).map(Number);
+      newSum += (nums[0] * nums[1]);
+    }
+    count++;
+  }
+
+  console.log(newSum);
 } catch (err) {
   console.error(err);
 }
