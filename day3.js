@@ -33,7 +33,6 @@ try {
     }
 
     if (count < matchesLen) {
-      console.log(newMatches[count]);
       const nums = newMatches[count].match(/\d+/g).map(Number);
       newSum += (nums[0] * nums[1]);
     }
