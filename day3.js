@@ -29,7 +29,9 @@ try {
     }
 
     if (newMatches[count] === "do()") {
-      count++;
+      while (count < matchesLen && !/mul\(\d+,\s*\d+\)/g.test(newMatches[count])) {
+        count++;
+      }
     }
 
     if (count < matchesLen) {
