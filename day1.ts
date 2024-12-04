@@ -1,10 +1,10 @@
-const fs = require('fs');
+import { readFileSync } from "node:fs";
 
-const list1 = [];
-const list2 = [];
+const list1: number[] = [];
+const list2: number[] = [];
 
 try {
-  const data = fs.readFileSync('day1.txt', 'utf8');
+  const data = readFileSync('day1.txt', 'utf8');
   data.split('\n').forEach((line) => {
     const [n1, n2] = line.split('   ').map(Number);
     if (n1) {
@@ -19,7 +19,7 @@ try {
   list2.sort((a, b) => a - b);
 
   let totalDistance = 0;
-  let limit = Math.min(list1.length, list2.length);
+  const limit = Math.min(list1.length, list2.length);
 
   for (let i = 0; i < limit; i++) {
     totalDistance += Math.abs(list1[i] - list2[i]);

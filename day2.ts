@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from "node:fs";
 
-const isSafe = (arr) => {
+const isSafe = (arr: number[]) => {
   if (arr.length < 2) {
     return true;
   }
@@ -33,7 +33,7 @@ const isSafe = (arr) => {
   return true;
 };
 
-const isSafeByRemovingLevel = (arr) => {
+const isSafeByRemovingLevel = (arr: number[]) => {
   for (let i = 0; i < arr.length; i++) {
     if (isSafe(arr.toSpliced(i, 1))) {
       return true;
@@ -46,13 +46,11 @@ const isSafeByRemovingLevel = (arr) => {
 try {
   const data = fs.readFileSync('day2.txt', 'utf8');
   let safeCount = 0;
-  data.split('\n').filter(Boolean).forEach((line) => {
-    console.log(line);
+  data.split('\n').filter(Boolean).forEach((line: string) => {
     const levels = line.split(' ').map(Number);
     if (isSafe(levels)) {
       safeCount++;
     } else if (isSafeByRemovingLevel(levels)) {
-      console.log(levels);
       safeCount++;
     }
   });

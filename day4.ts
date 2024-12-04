@@ -1,10 +1,10 @@
-const fs = require('fs');
+import fs from "node:fs";
 
 const WORD = 'XMAS';
 
 try {
   const data = fs.readFileSync('day4.txt', 'utf8');
-  const arr = [];
+  const arr: string[][] = [];
   data.split('\n').forEach((line) => {
     arr.push([...line]);
   });
@@ -18,7 +18,13 @@ try {
   const directions1 = [[-1, 1], [1, -1]];
   const directions2 = [[1, 1], [-1, -1]];
 
-  const dfs = (x, y, count, dirX, dirY) => {
+  const dfs = (
+    x: number,
+    y: number,
+    count: number,
+    dirX: number,
+    dirY: number
+  ): boolean => {
     if (count === (WORD.length - 1)) {
       return true;
     }
